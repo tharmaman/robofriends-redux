@@ -1,20 +1,33 @@
 version: 2
 jobs:
-  bobby:
+  build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/node:8.9
     steps:
       - checkout
-      - run: echo "A first hello"
-  sally:
+      - run: echo "yarn installing"
+      - run: yarn
+      - run: CI=true yarn run build
+  test:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/node:8.9
     steps:
       - checkout
-      - run: echo "Double trouble"
+      - run: echo "testing stuff"
+      - run: yarn
+      - run: yarn test
+  hithere:
+    docker:
+      - image: circleci/node:8.9
+    steps:
+      - checkout
+      - run: echo "helllooooo!"
 workflows:
   version: 2
-  build_and_test:
+  build_test_lint:
     jobs:
-      - bobby
-      - sally
+      - build
+      - hithere
+      - test:
+        requires:
+          - hithere
