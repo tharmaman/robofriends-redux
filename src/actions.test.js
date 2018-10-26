@@ -27,35 +27,35 @@ describe('request robots', () => {
         fetchMock.restore()
     });
 
-    it('handles a successful request', async () => {
-        const mockResult = [{ id: 1 }, { id: 2 }];
-        fetchMock.mock(
-            'https://jsonplaceholder.typicode.com/users',
-            mockResult
-        )
+    // it('handles a successful request', async () => {
+    //     const mockResult = [{ id: 1 }, { id: 2 }];
+    //     fetchMock.mock(
+    //         'https://jsonplaceholder.typicode.com/users',
+    //         mockResult
+    //     )
 
-        const expectedActions = [
-            { type: types.REQUEST_ROBOTS_PENDING },
-            {
-                type: types.REQUEST_ROBOTS_SUCCESS,
-                payload: mockResult
-            }
-        ];
+    //     const expectedActions = [
+    //         { type: types.REQUEST_ROBOTS_PENDING },
+    //         {
+    //             type: types.REQUEST_ROBOTS_SUCCESS,
+    //             payload: mockResult
+    //         }
+    //     ];
 
-        // let ting = await fetch('https://jsonplaceholder.typicode.com/users');
+    //     // let ting = await fetch('https://jsonplaceholder.typicode.com/users');
 
-        const store = await mockStore({})
+    //     const store = await mockStore({})
 
-        // return store.dispatch(actions.requestRobots()).then(expect(store.getActions()).toEqual(expectedActions))
+    //     // return store.dispatch(actions.requestRobots()).then(expect(store.getActions()).toEqual(expectedActions))
         
-        await store.dispatch(actions.requestRobots())
+    //     await store.dispatch(actions.requestRobots())
 
-        await store.dispatch({ type: types.REQUEST_ROBOTS_SUCCESS, payload: mockResult } );
+    //     await store.dispatch({ type: types.REQUEST_ROBOTS_SUCCESS, payload: mockResult } );
 
-        // console.log(store.getActions())
+    //     // console.log(store.getActions())
 
-        expect(store.getActions()).toEqual(expectedActions)
-    });
+    //     expect(store.getActions()).toEqual(expectedActions)
+    // });
 
     it('handles requesting robots API', () => {
         const store = mockStore();
