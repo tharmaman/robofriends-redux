@@ -5,17 +5,17 @@ jobs:
       docker:
         - image: circleci/ruby:2.4.1
       steps:
-        - checkout
-        - run:
-            command: echo "A first hello"
+        checkout
+        run:
+          command: echo "A first hello"
   sally:
     build:
       docker:
-        - image: circleci/ruby:2.4.1
+        image: circleci/ruby:2.4.1
       steps:
-        - checkout
-        - run:
-            command: echo "A first hello"
+        checkout
+        run:
+          command: echo "A first hello"
 workflows:
   version: 2
   bobby_sally:
